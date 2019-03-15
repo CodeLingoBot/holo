@@ -80,12 +80,12 @@ func (entity *Entity) applyNonOrphan(withForce bool) (skipReport bool, err error
 		baseDir := filepath.Dir(base.Path)
 		err := os.MkdirAll(baseDir, 0755)
 		if err != nil {
-			return false, fmt.Errorf("Cannot create directory %s: %s", baseDir, err.Error())
+			return false, fmt.Errorf("cannot create directory %s: %s", baseDir, err.Error())
 		}
 
 		err = current.Write(base.Path)
 		if err != nil {
-			return false, fmt.Errorf("Cannot copy %s to %s: %s", current.Path, base.Path, err.Error())
+			return false, fmt.Errorf("cannot copy %s to %s: %s", current.Path, base.Path, err.Error())
 		}
 		tmp := current
 		tmp.Path = base.Path
@@ -111,7 +111,7 @@ func (entity *Entity) applyNonOrphan(withForce bool) (skipReport bool, err error
 		fmt.Printf(">> found updated target base: %s -> %s\n", newBasePath, base.Path)
 		err := newBase.Write(base.Path)
 		if err != nil {
-			return false, fmt.Errorf("Cannot copy %s to %s: %v", newBase.Path, base.Path, err)
+			return false, fmt.Errorf("cannot copy %s to %s: %v", newBase.Path, base.Path, err)
 		}
 		_ = os.Remove(newBase.Path) //this can fail silently
 		newBase.Path = base.Path
@@ -149,7 +149,7 @@ func (entity *Entity) applyNonOrphan(withForce bool) (skipReport bool, err error
 		provisionedDir := filepath.Dir(provisioned.Path)
 		err = os.MkdirAll(provisionedDir, 0755)
 		if err != nil {
-			return false, fmt.Errorf("Cannot write %s: %s", provisioned.Path, err.Error())
+			return false, fmt.Errorf("cannot write %s: %s", provisioned.Path, err.Error())
 		}
 		err = desired.Write(provisioned.Path)
 		if err != nil {
